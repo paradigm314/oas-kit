@@ -1,0 +1,15 @@
+type: object
+properties:
+  data:
+    items:
+      $ref: "./language.yaml"
+    nullable: false
+    type: array
+  page_size:
+    example: 25
+    readOnly: true
+    type: integer
+  next_page:
+    example: false
+    readOnly: true
+    type: boolean

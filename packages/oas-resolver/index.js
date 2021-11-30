@@ -306,6 +306,27 @@ function scanExternalRefs(options) {
 
                     let $extra = '';
 
+                    if (options.resolveAbsolute) {
+                      let base = options.source.split('\\').join('/').split('/');
+                      let doc = base.pop(); // drop the actual filename
+                      if (!doc) base.pop(); // in case it ended with a /
+                      let fragment = '';
+                      let fnComponents = $ref.split('#');
+                      if (fnComponents.length > 1) {
+                        fragment = '#' + fnComponents[1];
+                        $ref = fnComponents[0];
+                      }
+                      base = base.join('/');
+                      let effectiveProtocol = testProtocol(url.parse($ref).protocol, url.parse(options.source).protocol);
+                      if (effectiveProtocol === 'file:') {
+                        $ref = path.resolve(base ? base + '/' : '', $ref) + fragment;
+                      }
+                      else {
+                        $ref = url.resolve(base ? base + '/' : '', $ref) + fragment;
+                      }
+                    }
+
+
                     if (!refs[$ref]) {
                         let potential = Object.keys(refs).find(function(e,i,a){
                             return $ref.startsWith(e+'/');

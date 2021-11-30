@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API
+paths:
+  /languages:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/language"
+  /languages/{language_id}:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/languages"
+components:
+  schemas:
+    language:
+      $ref: './language.yaml'
+    languages:
+      $ref: './languages.yaml'

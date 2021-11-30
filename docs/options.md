@@ -5,6 +5,7 @@ Parameter|Type|Input/Output|Description
 agent|Object|Input|Optional http(s).Agent to be used when fetching resources
 allScopes|Object|Internal|Cache of scopes by securityScheme for validation
 anchors|Boolean|Input|Allow use of YAML anchors/aliases. May break things
+absoluteReslove|Boolean|Input|Resolves external $refs to their absolute path to ensure relative references across multiple eternal files are matched correctly.
 cache|Object|Input|Optional cache of external resources
 components|Boolean|Input|Command-line flag to indicate unresolve information should be displayed
 context|Array|Output|The context stack of associated with errors in a validation step, you normally want the last entry only

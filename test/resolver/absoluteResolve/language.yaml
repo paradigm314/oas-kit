@@ -1,0 +1,17 @@
+type: object
+properties:
+  id:
+    description: Primary identifier
+    example: 1
+    format: int32
+    readOnly: true
+    type: integer
+  name:
+    description: Human readable name of language in English
+    example: "Python"
+    nullable: false
+    type: string
+  latest_version:
+    description: Latest language version the snippets have been tested with.
+    example: "3.8.7"
+    type: string

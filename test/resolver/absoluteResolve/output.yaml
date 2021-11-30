@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API
+paths:
+  /languages:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/language"
+  /languages/{language_id}:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/languages"
+components:
+  schemas:
+    language:
+      type: object
+      properties:
+        id:
+          description: Primary identifier
+          example: 1
+          format: int32
+          readOnly: true
+          type: integer
+        name:
+          description: Human readable name of language in English
+          example: Python
+          nullable: false
+          type: string
+        latest_version:
+          description: Latest language version the snippets have been tested with.
+          example: 3.8.7
+          type: string
+    languages:
+      type: object
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/language"
+          nullable: false
+          type: array
+        page_size:
+          example: 25
+          readOnly: true
+          type: integer
+        next_page:
+          example: false
+          readOnly: true
+          type: boolean
